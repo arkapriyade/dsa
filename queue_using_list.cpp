@@ -1,8 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-
-
 class Queue{
     list<int>l;
     int size1=0;
