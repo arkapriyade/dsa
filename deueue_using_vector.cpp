@@ -1,23 +1,31 @@
+#include<bits/stdc++.h>
+using namespace std;
 class Dequeue{
-    vector<int>v;
+    list<int>v;
     int size1=0;
     public:
 
     void push_front(int ele){
-       v[0]=ele;
-       for(int i=1;i<v.size();i++){
-           v[i+1]=v[i];
-       }
-       size1++;
+     
+      //cout<<v.size()<<endl;
+      //int k=v.size();
+     //  for(int i=k-1;i>=0;i--){
+          // cout<<"y"<<v[i]<<endl;
+          // v.insert(v.begin()+i+1,v[i]);
+          // remove(v.begin(),v.end(),v[i]);
+       //}
+       
+     // v[0]=ele;
+      
+      //cout<<v.size()<<"j";
+       v.push_front(ele);
+        
+      size1++;
+      
     }
     void pop_front(){
-        if (!v.empty()) {
-        v.erase(v.begin());
-        size1--;
-    }
-    else{
-        cout<<"queue is empty";
-    }
+        v.pop_front();
+    size1--;
     }
     void push_back(int ele){
         v.push_back(ele);
@@ -29,14 +37,14 @@ class Dequeue{
     }
 
     int peek_front(){
-        return *v.begin();
+        return v.front();
     }
     int peek_back(){
-        return *v.end();
+        return v.back();
     }
 
     void display(){
-        vector<int>::iterator it;
+        list<int>::iterator it;
         for(it=v.begin();it!=v.end();it++){
             cout<<*it<<" ";
         }
@@ -51,20 +59,29 @@ class Dequeue{
 
     
     void insert_at(int ele, int idx){
-        v.insert(v.begin()+idx,ele);
+        list<int>::iterator it=v.begin();
+        advance(it,idx);
+        v.insert(it,ele);
+        size1++;
     }
     void delete_from(int idx){
-        v.erase(v.begin()+idx);
+       list<int>::iterator it=v.begin();
+        advance(it,idx);
+        v.erase(it);
+        size1++;
     }
 
     int peek_at(int idx){
-        return v[idx];
+         list<int>::iterator it=v.begin();
+        advance(it,idx);
+        return *it;
     }
 };
 
 int main(){
     Dequeue d;
     d.push_back(1);
+    d.push_front(7);
     d.push_back(2);
     d.insert_at(3,1);
     cout<<d.size()<<endl;
